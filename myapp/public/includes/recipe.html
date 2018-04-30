@@ -1,0 +1,87 @@
+<div class="wrap recipe-detail-wrap" itemscope itemtype="http://schema.org/Recipe">
+
+    <header class="recipe-detail-header">
+
+        <div>
+            <a class="recipeLink" href="/recipes/{{ $ctrl.prevRecipe }}">
+                <i class="fa fa-angle-left" style="font-size: 36px"></i>Prev Recipe</a>
+
+        </div>
+        <div class="recipeBullet">
+            <a href="/recipes">&#8226;</a>
+        </div>
+        <div>
+            <a class="recipeLink" href="/recipes/{{ $ctrl.nextRecipe }}">Next Recipe
+                <i class="fa fa-angle-right" style="font-size: 36px"></i>
+            </a>
+
+        </div>
+
+    </header>
+    <div ng-hide="$ctrl.editorEnabled">
+        <h1>{{ $ctrl.recipe.name }}</h1>
+        <button class="edit-recipe-btn" ng-click="$ctrl.toggleEditor($ctrl.recipe)">Edit</button>
+        <p>By: {{ $ctrl.recipe.author }}</p>
+        <p>{{ $ctrl.recipe.description }}</p>
+        <img class="recipe-main-img" ng-src="img/home/{{ $ctrl.mainImageUrl }}" />
+        <!-- <ul class="recipe-thumbs">
+                <li ng-repeat="img in $ctrl.recipe.images">
+                    <img ng-src="img/home/{{img}}" ng-click="$ctrl.setImage(img)" />
+                </li>
+            </ul> -->
+
+
+        <h3>Ingredients</h3>
+        <p class="recipe-ingredients">{{ $ctrl.recipe.ingredients }}</p>
+        <h3>Directions</h3>
+        <p class="recipe-directions">{{ $ctrl.recipe.directions }}</p>
+    </div>
+    <div ng-show="$ctrl.editorEnabled">
+        <form ng-submit="$ctrl.saveRecipe($ctrl.recipe, $ctrl.recipe._id)" name="updateRecipe">
+            <label>Recipe Name</label>
+            <input type="text" ng-model="$ctrl.recipe.name">
+            <label>Author</label>
+            <input type="text" ng-model="$ctrl.recipe.author">
+            <label>Date</label>
+            <input type="text" ng-model="$ctrl.recipe.date">
+            <label>Description</label>
+            <textarea type="text" ng-model="$ctrl.recipe.description"></textarea>
+            <label>Ingredients</label>
+            <textarea type="text" ng-model="$ctrl.recipe.ingredients"></textarea>
+            <label>Directions</label>
+            <textarea type="text" ng-model="$ctrl.recipe.directions"></textarea>
+            <label>Image</label>
+            <input type="text" ng-model="$ctrl.recipe.image">
+            <label>ID</label>
+            <input type="text" ng-model="$ctrl.recipe._id">
+            <input type="submit" value="Save">
+        </form>
+        <button type="cancel" ng-click="$ctrl.toggleEditor()">Cancel</button>
+    </div>
+
+    <button type="submit" ng-click="$ctrl.back()">Back</button>
+
+</div>
+
+
+<!-- <div class="wrap" ng-hide="$ctrl.editorEnabled">
+    <dl>
+        <dt>Recipe Name</dt>
+        <dd>{{ $ctrl.recipe.name }}</dd>
+        <dt>Author</dt>
+        <dd>{{ $ctrl.recipe.author }}</dd>
+        <dt>Date</dt>
+        <dd>{{ $ctrl.recipe.date }}</dd>
+        <dt>Description</dt>
+        <dd>{{ $ctrl.recipe.description }}</dd>
+        <dt>Ingredients</dt>
+        <dd>{{ $ctrl.recipe.ingredients }}</dd>
+        <dt>Directions</dt>
+        <dd>{{ $ctrl.recipe.directions }}</dd>
+        <dt>Image</dt>
+        <dd>{{ $ctrl.recipe.image }}</dd>
+        <dt>ID</dt>
+        <dd>{{ $ctrl.recipe._id }}</dd>
+    </dl>
+    <button ng-click="$ctrl.toggleEditor($ctrl.recipe)">Edit</button>
+</div> -->

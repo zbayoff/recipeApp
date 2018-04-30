@@ -1,0 +1,48 @@
+<div class="wrap">
+    <header class="filter-header">
+        <p>
+            <input type="text" placeholder="Search Recipes" ng-model="query" />
+        </p>
+        <p>Sort by:
+            <select ng-model="orderProp">
+                <option value="name">Alphabetical</option>
+                <option value="date">Newest</option>
+            </select>
+        </p>
+    </header>
+</div>
+
+<div class="wrap">
+    <ul>
+        <li ng-repeat="recipe in recipes | filter: query | orderBy:orderProp" class="fade">
+            <img ng-src="img/home/{{ recipe.image }}">
+            <div>
+                <h2>
+                    <a href="/recipes/{{ recipe._id }}">{{ recipe.name }}</a>
+                    <span ng-click="deleteRecipe($index, recipe._id)">✖︎</span>
+                </h2>
+                <p>{{ recipe.description }}</p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="wrap addRecipe-wrap">
+    <header class="addRecipe-header" ng-click="isAddRecipeFormOpen = !isAddRecipeFormOpen">
+        <div class="addRecipe-icon">
+            <img src="img/plus.png">
+        </div>
+        <h2 class="addRecipe-title">Add Recipe</h2>
+    </header>
+
+    <form class="ng-hide fade-form" ng-submit="addRecipe(recipe)" ng-show="isAddRecipeFormOpen">
+        <input type="text" ng-model="recipe.name" required placeholder="Recipe Name" />
+        <input type="text" ng-model="recipe.author" required placeholder="Author" />
+        <input type="text" ng-model="recipe.date" required placeholder="Date" />
+        <textarea type="text" ng-model="recipe.description" required placeholder="Description"></textarea>
+        <textarea type="text" ng-model="recipe.ingredients" required placeholder="Ingredients"></textarea>
+        <textarea type="text" ng-model="recipe.directions" required placeholder="Directions"></textarea>
+        <input type="file" ng-model="recipe.imageMain" accept="image/*" required placeholder="Image" />
+        <button type="submit">Add Recipe</button>
+    </form>
+</div>
