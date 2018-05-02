@@ -40470,23 +40470,17 @@ app.component('recipeDetail', {
       _this.recipe = response.data;
       _this.images = _this.recipe.images;
 
-      console.log(_this.images);
+      var count = 0;
 
-      // let count = 0;
-
-      // this.imagePaths = this.images.map((item) => {
-      //   let itemPath = Object.values(item)[0];
-      //   if (itemPath === "") {
-      //     itemPath = count;
-      //     count += 1;
-      //   }
-      //   return itemPath;
-      // });
-
-      // console.log(this.imagePaths);
-
-
-      // this.setImage(this.recipe.image);
+      _this.imagePaths = _this.images.map(function (item) {
+        var itemPath = Object.values(item)[0];
+        if (itemPath === "") {
+          itemPath = count;
+          count += 1;
+        }
+        return itemPath;
+      });
+      _this.setImage(_this.imagePaths[0]);
     });
 
     // For previous and next recipe operation
@@ -40513,7 +40507,10 @@ app.component('recipeDetail', {
       }
     });
 
-    // this.setImage = imageUrl => (this.mainImageUrl = imageUrl);
+    this.setImage = function (imageUrl) {
+      return _this.mainImageUrl = imageUrl;
+    };
+
     this.back = function () {
       $window.location.href = '/recipes';
     };
@@ -40535,7 +40532,7 @@ app.component('recipeList', {
     $scope.orderProp = 'date';
     $http.get('/api/recipes').then(function (res) {
       $scope.recipes = res.data;
-      console.log($scope.recipes);
+      // console.log($scope.recipes);
       $scope.orderProp = 'date';
     });
 
@@ -40551,7 +40548,7 @@ app.component('recipeList', {
 
     $scope.addRecipe = function (data) {
       $http.post('/api/recipes/', data).then(function (res) {
-        console.log(res.data);
+        // console.log(res.data);
         $scope.recipes.push(res.data);
         $scope.recipe = {};
       });
@@ -40561,7 +40558,7 @@ app.component('recipeList', {
     addRecipeHeader.addEventListener('click', scrollToAddRecipe);
 
     function scrollToAddRecipe() {
-      console.log(addRecipeHeader.offsetTop);
+      // console.log(addRecipeHeader.offsetTop);
       var topOfAddRecipeHeader = addRecipeHeader.offsetTop;
       window.scrollTo(0, topOfAddRecipeHeader);
     }

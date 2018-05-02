@@ -14,8 +14,8 @@
 
 <div class="wrap">
     <ul>
-        <li ng-repeat="recipe in recipes | filter: query | orderBy:orderProp" class="fade">
-            <img ng-src="img/home/{{ recipe.images[0] }}">
+        <li ng-repeat="recipe in recipes | filter: query | orderBy: orderProp:true" class="fade">
+            <img ng-src="img/home/{{ recipe.images[0][0] }}">
             <div>
                 <h2>
                     <a href="/recipes/{{ recipe._id }}">{{ recipe.name }}</a>
@@ -38,7 +38,7 @@
     <form class="ng-hide fade-form" ng-submit="addRecipe(recipe)" ng-show="isAddRecipeFormOpen">
         <input type="text" ng-model="recipe.name" required placeholder="Recipe Name" />
         <input type="text" ng-model="recipe.author" required placeholder="Author" />
-        <input type="text" ng-model="recipe.date" required placeholder="Date" />
+        <input type="text" ng-model="recipe.date" required placeholder="Date (YYYY-MM-DD)" />
         <textarea type="text" ng-model="recipe.description" required placeholder="Description"></textarea>
         <textarea type="text" ng-model="recipe.ingredients" required placeholder="Ingredients"></textarea>
         <textarea type="text" ng-model="recipe.directions" required placeholder="Directions"></textarea>

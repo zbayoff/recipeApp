@@ -23,9 +23,9 @@
         <button class="edit-recipe-btn" ng-click="$ctrl.toggleEditor($ctrl.recipe)">Edit</button>
         <p>By: {{ $ctrl.recipe.author }}</p>
         <p>{{ $ctrl.recipe.description }}</p>
-        <img class="recipe-main-img" ng-src="img/home/{{ $ctrl.images[0] }}" />
+        <img class="recipe-main-img" ng-src="img/home/{{ $ctrl.mainImageUrl }}" />
         <ul class="recipe-thumbs">
-            <li ng-repeat="img in $ctrl.images" class="recipe-thumb-item">
+            <li ng-repeat="img in $ctrl.images[0]" class="recipe-thumb-item">
                 <img ng-src="img/home/{{img}}" ng-click="$ctrl.setImage(img)">
             </li>
         </ul>
@@ -72,13 +72,13 @@
             <label>Directions</label>
             <textarea type="text" ng-model="$ctrl.recipe.directions"></textarea>
             <label>Image</label>
-            <input type="text" ng-model="$ctrl.recipe.images[0]">
+            <input type="text" ng-model="$ctrl.recipe.images[0][0]">
             <label>Add'l Image</label>
-            <input type="text" ng-model="$ctrl.recipe.images[1]">
+            <input type="text" ng-model="$ctrl.recipe.images[0][1]">
             <label>Add'l Image</label>
-            <input type="text" ng-model="$ctrl.recipe.images[2]">
+            <input type="text" ng-model="$ctrl.recipe.images[0][2]">
             <label>Add'l Image</label>
-            <input type="text" ng-model="$ctrl.recipe.images[3]">
+            <input type="text" ng-model="$ctrl.recipe.images[0][3]">
             <label>ID</label>
             <input type="text" ng-model="$ctrl.recipe._id">
             <input type="submit" value="Save">

@@ -210,6 +210,10 @@ nav {
   padding: 1rem;
 }
 
+.wrap li div {
+  width: 100%;
+}
+
 .wrap li img {
   width: 30%;
   height: 100%;
@@ -221,6 +225,7 @@ nav {
 .wrap li h2 {
   font-size: 1.5rem;
   font-family: lobster;
+  margin-top: 0;
 }
 
 .wrap li h2 a {
