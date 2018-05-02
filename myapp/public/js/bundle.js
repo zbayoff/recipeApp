@@ -40469,17 +40469,22 @@ app.component('recipeDetail', {
     $http.get('/api/recipes/' + $routeParams.recipeId).then(function (response) {
       _this.recipe = response.data;
       _this.images = _this.recipe.images;
-      var count = 0;
-      _this.imagePaths = _this.images.map(function (item) {
-        var itemPath = Object.values(item)[0];
-        if (itemPath === "") {
-          itemPath = count;
-          count += 1;
-        }
-        return itemPath;
-      });
 
-      console.log(_this.imagePaths);
+      console.log(_this.images);
+
+      // let count = 0;
+
+      // this.imagePaths = this.images.map((item) => {
+      //   let itemPath = Object.values(item)[0];
+      //   if (itemPath === "") {
+      //     itemPath = count;
+      //     count += 1;
+      //   }
+      //   return itemPath;
+      // });
+
+      // console.log(this.imagePaths);
+
 
       // this.setImage(this.recipe.image);
     });

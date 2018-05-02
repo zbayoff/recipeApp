@@ -15,7 +15,7 @@
 <div class="wrap">
     <ul>
         <li ng-repeat="recipe in recipes | filter: query | orderBy:orderProp" class="fade">
-            <img ng-src="img/home/{{ recipe.images[0].image1 }}">
+            <img ng-src="img/home/{{ recipe.images[0] }}">
             <div>
                 <h2>
                     <a href="/recipes/{{ recipe._id }}">{{ recipe.name }}</a>
@@ -42,10 +42,10 @@
         <textarea type="text" ng-model="recipe.description" required placeholder="Description"></textarea>
         <textarea type="text" ng-model="recipe.ingredients" required placeholder="Ingredients"></textarea>
         <textarea type="text" ng-model="recipe.directions" required placeholder="Directions"></textarea>
-        <input type="text" ng-model="recipe.image1" required placeholder="Image" />
-        <input type="text" ng-model="recipe.image2" required placeholder="Add'l Image" />
-        <input type="text" ng-model="recipe.image3" required placeholder="Add'l Image" />
-        <input type="text" ng-model="recipe.image4" required placeholder="Add'l Image" />
+        <input type="text" ng-model="recipe.images[0]" required placeholder="Image" />
+        <input type="text" ng-model="recipe.images[1]" required placeholder="Add'l Image" />
+        <input type="text" ng-model="recipe.images[2]" required placeholder="Add'l Image" />
+        <input type="text" ng-model="recipe.images[3]" required placeholder="Add'l Image" />
         <button type="submit">Add Recipe</button>
     </form>
 </div>
