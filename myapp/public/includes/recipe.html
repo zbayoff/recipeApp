@@ -23,7 +23,28 @@
         <button class="edit-recipe-btn" ng-click="$ctrl.toggleEditor($ctrl.recipe)">Edit</button>
         <p>By: {{ $ctrl.recipe.author }}</p>
         <p>{{ $ctrl.recipe.description }}</p>
-        <img class="recipe-main-img" ng-src="img/home/{{ $ctrl.mainImageUrl }}" />
+        <img class="recipe-main-img" ng-src="img/home/{{ $ctrl.images[0].image1 }}" />
+        <ul class="recipe-thumbs">
+            <li ng-repeat="img in $ctrl.imagePaths" class="recipe-thumb-item">
+                <img ng-src="img/home/{{img}}">
+            </li>
+        </ul>
+
+
+        <!-- <ul class="recipe-thumbs">
+            <li class="recipe-thumb-item">
+                <img ng-src="img/home/lasagna-1.png">
+            </li>
+            <li class="recipe-thumb-item">
+                <img ng-src="img/home/lasagna-2.png">
+            </li>
+            <li class="recipe-thumb-item">
+                <img ng-src="img/home/lasagna-3.png">
+            </li>
+            <li class="recipe-thumb-item">
+                <img ng-src="img/home/lasagna-4.png">
+            </li>
+        </ul> -->
         <!-- <ul class="recipe-thumbs">
                 <li ng-repeat="img in $ctrl.recipe.images">
                     <img ng-src="img/home/{{img}}" ng-click="$ctrl.setImage(img)" />
@@ -51,7 +72,13 @@
             <label>Directions</label>
             <textarea type="text" ng-model="$ctrl.recipe.directions"></textarea>
             <label>Image</label>
-            <input type="text" ng-model="$ctrl.recipe.image">
+            <input type="text" ng-model="$ctrl.recipe.image1">
+            <label>Add'l Image</label>
+            <input type="text" ng-model="$ctrl.recipe.image2">
+            <label>Add'l Image</label>
+            <input type="text" ng-model="$ctrl.recipe.image3">
+            <label>Add'l Image</label>
+            <input type="text" ng-model="$ctrl.recipe.image4">
             <label>ID</label>
             <input type="text" ng-model="$ctrl.recipe._id">
             <input type="submit" value="Save">
@@ -59,7 +86,7 @@
         <button type="cancel" ng-click="$ctrl.toggleEditor()">Cancel</button>
     </div>
 
-    <button type="submit" ng-click="$ctrl.back()">Back</button>
+    <button class="back-btn" type="submit"><a href="/recipes">Back</a></button>
 
 </div>
 

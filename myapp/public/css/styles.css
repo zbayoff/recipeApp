@@ -237,7 +237,7 @@ nav {
 .recipe-detail-header {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
   position: relative;
 }
 
@@ -247,6 +247,8 @@ nav {
   padding: 1rem 0 1rem 0;
   color: black;
   text-decoration: none;
+  margin: 0 1rem 0 1rem;
+  font-size: 1.2rem;
 }
 
 .recipe-detail-header .recipeLink i {
@@ -272,6 +274,27 @@ nav {
 }
 
 .recipe-main-img {
+  width: 100%;
+}
+
+.recipe-thumbs {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.recipe-thumbs .recipe-thumb-item {
+  width: 100%;
+  padding: 0.3rem;
+}
+
+@media screen and (min-width: 600px) {
+  .recipe-thumbs .recipe-thumb-item {
+    width: 30%;
+  }
+}
+
+.recipe-thumbs .recipe-thumb-item img {
   width: 100%;
 }
 
@@ -323,6 +346,16 @@ input[type="submit"] {
 
 label {
   margin-bottom: 1rem;
+}
+
+.back-btn {
+  padding: 0rem;
+}
+
+.back-btn a {
+  padding: 1rem 1.2rem 1rem 1.2rem;
+  color: white;
+  text-decoration: none;
 }
 
 form {

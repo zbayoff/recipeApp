@@ -25,7 +25,7 @@ app.config(function config($locationProvider, $routeProvider) {
 
 app.component('navList', {
   templateUrl: '/includes/nav.html',
-  controller: function NavController ($scope, $location) {
+  controller: function NavController($scope, $location) {
     $scope.isActive = function (viewLocation) {
       let active = viewLocation === $location.path();
       if ($location.path().substring(0, 8) === '/recipes' && viewLocation === '/recipes') {
@@ -39,10 +39,24 @@ app.component('navList', {
 
 app.component('recipeDetail', {
   templateUrl: '/includes/recipe.html',
-  controller: function RecipeDetailController($http, $routeParams) {
+  controller: function RecipeDetailController($http, $routeParams, $window) {
     $http.get('/api/recipes/' + $routeParams.recipeId).then(response => {
       this.recipe = response.data;
-      this.setImage(this.recipe.image);
+      this.images = this.recipe.images;
+      let count = 0;
+      this.imagePaths = this.images.map((item) => {
+        let itemPath = Object.values(item)[0];
+        if (itemPath === "") {
+          itemPath = count;
+          count += 1;
+        }
+        return itemPath;
+      });
+
+      console.log(this.imagePaths);
+
+
+      // this.setImage(this.recipe.image);
     });
 
     // For previous and next recipe operation
@@ -69,8 +83,10 @@ app.component('recipeDetail', {
       }
     });
 
-    this.setImage = imageUrl => (this.mainImageUrl = imageUrl);
-    this.back = () => window.history.back();
+    // this.setImage = imageUrl => (this.mainImageUrl = imageUrl);
+    this.back = () => {
+      $window.location.href = '/recipes'
+    };
     this.editorEnabled = false;
     this.toggleEditor = () => (this.editorEnabled = !this.editorEnabled);
     this.saveRecipe = (recipe, recipeid) => {
@@ -85,6 +101,7 @@ app.component('recipeList', {
     $scope.orderProp = 'date';
     $http.get('/api/recipes').then(res => {
       $scope.recipes = res.data;
+      console.log($scope.recipes);
       $scope.orderProp = 'date';
     });
 
@@ -110,8 +127,8 @@ app.component('recipeList', {
 
     let addRecipeHeader = document.querySelector('.addRecipe-header');
     addRecipeHeader.addEventListener('click', scrollToAddRecipe)
-    
-    function scrollToAddRecipe () {
+
+    function scrollToAddRecipe() {
       console.log(addRecipeHeader.offsetTop);
       let topOfAddRecipeHeader = addRecipeHeader.offsetTop;
       window.scrollTo(0, topOfAddRecipeHeader);

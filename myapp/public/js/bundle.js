@@ -40463,12 +40463,25 @@ app.component('navList', {
 
 app.component('recipeDetail', {
   templateUrl: '/includes/recipe.html',
-  controller: function RecipeDetailController($http, $routeParams) {
+  controller: function RecipeDetailController($http, $routeParams, $window) {
     var _this = this;
 
     $http.get('/api/recipes/' + $routeParams.recipeId).then(function (response) {
       _this.recipe = response.data;
-      _this.setImage(_this.recipe.image);
+      _this.images = _this.recipe.images;
+      var count = 0;
+      _this.imagePaths = _this.images.map(function (item) {
+        var itemPath = Object.values(item)[0];
+        if (itemPath === "") {
+          itemPath = count;
+          count += 1;
+        }
+        return itemPath;
+      });
+
+      console.log(_this.imagePaths);
+
+      // this.setImage(this.recipe.image);
     });
 
     // For previous and next recipe operation
@@ -40495,11 +40508,9 @@ app.component('recipeDetail', {
       }
     });
 
-    this.setImage = function (imageUrl) {
-      return _this.mainImageUrl = imageUrl;
-    };
+    // this.setImage = imageUrl => (this.mainImageUrl = imageUrl);
     this.back = function () {
-      return window.history.back();
+      $window.location.href = '/recipes';
     };
     this.editorEnabled = false;
     this.toggleEditor = function () {
@@ -40519,6 +40530,7 @@ app.component('recipeList', {
     $scope.orderProp = 'date';
     $http.get('/api/recipes').then(function (res) {
       $scope.recipes = res.data;
+      console.log($scope.recipes);
       $scope.orderProp = 'date';
     });
 

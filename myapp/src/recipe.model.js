@@ -8,7 +8,7 @@ const RecipeSchema = new Schema({
     description: String,
     ingredients: String,
     directions: String,
-    image: String
+    images: Array
 });
 
 module.exports = mongoose.model('Recipe', RecipeSchema);

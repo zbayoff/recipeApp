@@ -7,7 +7,7 @@
 .recipe-detail-header {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     position: relative;
     .recipeLink {
         display: flex;
@@ -15,6 +15,8 @@
         padding: 1rem 0 1rem 0;
         color: black;
         text-decoration: none;
+        margin: 0 1rem 0 1rem;
+        font-size: 1.2rem;
         i {
             padding: 0 0.8rem;
         }
@@ -39,6 +41,22 @@
 
 .recipe-main-img {
     width: 100%;
+}
+
+.recipe-thumbs {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .recipe-thumb-item {
+        width: 100%;
+        padding: 0.3rem;
+        @media screen and (min-width: 600px) {
+            width: 30%;
+        }
+        img {
+            width: 100%;
+        }
+    }
 }
 
 .recipe-ingredients,
@@ -91,6 +109,13 @@ label {
     margin-bottom: 1rem;
 }
 
-.edit-recipe-btn {
+.back-btn {
+    padding: 0rem;
+    a {
+        padding: 1rem 1.2rem 1rem 1.2rem;
     
+        color: white;
+        text-decoration: none;
+    }
 }
+
